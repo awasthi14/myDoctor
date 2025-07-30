@@ -5,13 +5,34 @@ export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    if (email && password) {
+  const handleLogin = async () => {
+  if (!email || !password) {
+    alert('Enter credentials');
+    return;
+  }
+
+  try {
+    const response = await fetch('http://192.168.1.106:3000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert('Login successful');
+      // Optionally store token: await AsyncStorage.setItem('token', data.token);
       navigation.navigate('Dashboard');
     } else {
-      alert('Enter credentials');
+      alert(data.message || 'Login failed');
     }
-  };
+  } catch (error) {
+    console.error('Login error:', error);
+    alert('Network error. Try again.');
+  }
+};
+
 
   return (
     <View style={styles.container}>
