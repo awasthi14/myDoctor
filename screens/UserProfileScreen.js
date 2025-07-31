@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Button, Text, StyleSheet, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function UsersScreen({ navigation }) {
+export default function UserProfileScreen({ navigation }) {
   const [userData, setUserData] = useState(null);
 
   const fetchProtectedData = async () => {
@@ -34,7 +34,7 @@ export default function UsersScreen({ navigation }) {
 
       {userData ? (
         <View style={styles.userBox}>
-          <Text style={styles.title}>User Info:</Text>
+          <Text style={styles.title}>Login User Info:</Text>
           <Text>Name: {userData.name}</Text>
           <Text>Email: {userData.email}</Text>
           <Text>Role: {userData.role}</Text>

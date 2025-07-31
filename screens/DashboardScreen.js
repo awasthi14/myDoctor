@@ -4,7 +4,7 @@ import { View, Button, StyleSheet } from 'react-native';
 export default function DashboardScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Button title="Show Users" onPress={() => navigation.navigate('Users')} />
+      <Button title="User Profile" onPress={() => navigation.navigate('UserProfile')} />
       <Button title="Register Patient" onPress={() => navigation.navigate('Register Patient')} />
       <Button title="Doctor Scheduling" onPress={() => navigation.navigate('Doctor Schedule')} />
       <Button title="Book Appointment" onPress={() => navigation.navigate('Book Appointment')} />
