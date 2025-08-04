@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_BASE_URL } from './config';
 
 
 export default function LoginScreen({ navigation }) {
@@ -14,7 +15,7 @@ export default function LoginScreen({ navigation }) {
   }
 
   try {
-    const response = await fetch('http://192.168.1.106:3000/api/auth/login', {
+    const response = await fetch(`${API_BASE_URL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),

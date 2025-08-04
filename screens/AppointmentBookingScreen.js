@@ -11,6 +11,7 @@ import {
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_BASE_URL } from './config';
 
 export default function AppointmentBookingScreen({ navigation }) {
   const [appointmentDate, setAppointmentDate] = useState('');
@@ -24,7 +25,7 @@ export default function AppointmentBookingScreen({ navigation }) {
   const fetchDoctors = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
-      const response = await fetch('http://192.168.1.106:3000/api/doctors', {
+      const response = await fetch(`${API_BASE_URL}/doctors`, {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -38,7 +39,7 @@ export default function AppointmentBookingScreen({ navigation }) {
   const fetchPatients = async () => {
     try {
       const token = await AsyncStorage.getItem('token');
-      const response = await fetch('http://192.168.1.106:3000/api/patients', {
+      const response = await fetch(`${API_BASE_URL}/patients`, {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -77,7 +78,7 @@ export default function AppointmentBookingScreen({ navigation }) {
 
   try {
     const token = await AsyncStorage.getItem('token');
-    const response = await fetch('http://192.168.1.106:3000/api/appointments', {
+    const response = await fetch(`${API_BASE_URL}/appointments`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
