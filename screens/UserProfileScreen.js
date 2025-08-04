@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Button, Text, StyleSheet, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_BASE_URL } from './config';
 
 export default function UserProfileScreen({ navigation }) {
   const [userData, setUserData] = useState(null);
@@ -9,7 +10,7 @@ export default function UserProfileScreen({ navigation }) {
     try {
       const token = await AsyncStorage.getItem('token');
 
-      const response = await fetch('http://192.168.1.106:3000/api/user/me', {
+      const response = await fetch(`${API_BASE_URL}/user/me`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
